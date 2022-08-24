@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2? family= Montserrat:wght@100;200;400;800 & display=swap');
+
+:root {
+  /*colors*/
+  --background-primary: #f0f8ff;
+  --bs-color-primary: #22577a;
+  --bs-color-secundary: #57CC99;
+  --bs-color-bluebary: #38A3A5;
+  --bs-color-greenbary: #80ED99;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+html, body, .root-app {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  background-color: var(--background-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: Montserrat, sans-serif;
+}
+
+.clear {
+  clear: both;
+}
+

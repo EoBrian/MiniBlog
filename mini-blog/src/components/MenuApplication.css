@@ -1,0 +1,33 @@
+nav .logo {
+  float: left;
+}
+
+nav .logo a {
+  color: #000;
+} nav .logo a strong {
+  color: var(--bs-color-bluebary);
+}
+
+nav .nav-bar {
+  float: right;
+}
+
+nav .nav-bar ul li {
+  display: inline;
+}
+
+.nav-bar a {
+  padding: 10px;
+  color: #000;
+}
+
+.nav-bar a:hover {
+  color: var(--bs-color-bluebary);
+  background-color: #000;
+  transition: .6s;
+}
+
+a.active {
+  color: var(--bs-color-bluebary);
+  background-color: #000;
+}

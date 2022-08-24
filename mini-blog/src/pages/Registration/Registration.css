@@ -1,0 +1,27 @@
+form {
+  height: 80vh;
+  text-align: center;
+}
+
+form .fields {
+  margin: 10px;
+  margin-top: 20px;
+}
+
+label {
+  font-size: 1.2em;
+}
+
+input {
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  width: 50%;
+}
+
+[type=submit] {
+  background-color: #000;
+  color: var(--bs-color-primary);
+  font-size: 1.2em;
+  cursor: pointer;
+}
