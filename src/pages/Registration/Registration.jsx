@@ -24,14 +24,14 @@ const Registration = () => {
       <div className="fields">
         <label>
           Senha
-          <input type="password" />
+          <input type="password" name="password"/>
         </label>
       </div>
 
       <div className="fields">
         <label>
           Confirme sua senha
-          <input type="password" />
+          <input type="password" name="confirmePassword"/>
         </label>
       </div>
 

@@ -9,14 +9,14 @@ const Login = () => {
 
       <div className="fields">
         <label>
-          username
+          Username
           <input type="text" />
         </label>
       </div>
 
       <div className="fields">
         <label>
-          password
+          Password
           <input type="password" />
         </label>
       </div>
