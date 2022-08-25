@@ -16,12 +16,12 @@ input {
   display: block;
   margin: 0 auto;
   padding: 5px;
-  width: 50%;
+  width: 100%;
 }
 
 [type=submit] {
   background-color: #000;
-  color: var(--bs-color-primary);
+  color: var(--bs-color-bluebary);
   font-size: 1.2em;
   cursor: pointer;
 }

@@ -18,7 +18,7 @@ import MenuApplication from "./components/MenuApplication"
 import Home from './pages/Home'
 import CreatePosts from './pages/CreatePosts'
 import DashBoard from './pages/DashBoard'
-import Login from './pages/Login'
+import Login from './pages/Login/Login'
 import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
 
