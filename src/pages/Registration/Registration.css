@@ -25,3 +25,13 @@ input {
   font-size: 1.2em;
   cursor: pointer;
 }
+
+@media screen and (max-width:900px){
+  input {
+    padding: 10px;
+  }
+
+  form {
+    text-align: left;
+  }
+}
