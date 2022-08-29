@@ -1,33 +1,57 @@
-nav .logo {
-  float: left;
-}
-
+/*logo*/
 nav .logo a {
   color: #000;
+  font-size: 1.3em;
 } nav .logo a strong {
   color: var(--bs-color-bluebary);
 }
 
-nav .nav-bar {
+/*nav-bar*/
+nav .menu-button {
   float: right;
 }
 
-nav .nav-bar ul li {
-  display: inline;
+.nav-bar ul {
+  margin-top: 10px;
 }
 
-.nav-bar a {
-  padding: 10px;
+.nav-bar a, .nav-bar ul li{
+  line-height: 3em;
+  text-indent: 10px;
   color: #000;
+  display: block;
 }
 
-.nav-bar a:hover {
+a.active, .nav-bar a:hover {
   color: var(--bs-color-bluebary);
   background-color: #000;
   transition: .6s;
 }
 
-a.active {
-  color: var(--bs-color-bluebary);
-  background-color: #000;
+.toggle-menu {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .menu-button {
+    display: none;
+  }
+
+  .toggle-menu {
+    display: block;
+    
+  }
+
+  .nav-bar ul {
+    display: flex;
+    flex-direction: row;
+    float: right;
+  }
+
+  .nav-bar a, .nav-bar ul li {
+    text-indent: 0;
+    line-height: 2em;
+    padding: 5px;
+    margin: 0;
+  }
 }

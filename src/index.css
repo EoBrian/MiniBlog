@@ -29,7 +29,19 @@ textarea::placeholder {
   font-family: Montserrat, sans-serif;
 }
 
+input {
+  border: none;
+  border-bottom: 2px solid #22577a;
+}
+
 .clear {
   clear: both;
+}
+
+.error {
+  font-size: 1.3em;
+  color: red;
+  background-color: burlywood;
+  margin-top: 20px;
 }
 
