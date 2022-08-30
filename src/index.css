@@ -52,3 +52,35 @@ input {
 .toggle-menu {
   display: none;
 }
+
+/*loading async*/
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #22577ab2;
+  transition: 1s;
+  height: 100%;
+  width: 100%;
+  border: 1px solid;
+}
+
+.loading .circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border-bottom: 5px solid #fff;
+  animation: CircleLoop 1.5s infinite linear;
+}
+
+@keyframes CircleLoop {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

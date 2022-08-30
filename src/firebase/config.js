@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"
 import { getDatabase } from "firebase/database"
 
 const firebaseConfig = {
@@ -11,8 +12,13 @@ const firebaseConfig = {
   measurementId: "G-908XQ2J0XT"
 };
 
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app)
+
+
 const db = getDatabase(app)
 
 export { db }

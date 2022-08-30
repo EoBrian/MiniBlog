@@ -1,17 +1,21 @@
 import "./Registration.css"
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 //react-hook-form
 import { useForm } from "react-hook-form"
 
+//custom hoocks
+import { useAuthentication } from "../../hooks/useAuthentication"
+
 const Registration = () => {
 
+  const { error: AuthError, loading, createUser } = useAuthentication()
   const [error, setError] = useState(null)
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit } = useForm()
 
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     setError(""); //reset error
 
     /*
@@ -24,10 +28,18 @@ const Registration = () => {
     if (data.password != data.confirmPassword) {
       setError("senhas incompativeis");
       return
-    }
+    } 
 
-    console.log(data);
+    const response = await createUser(data)
+    console.log(data) 
+    
   }
+
+  useEffect(()=> {
+    if(AuthError) {
+      setError(AuthError)
+    }
+  }, [AuthError])
 
 
   return (
@@ -68,6 +80,14 @@ const Registration = () => {
       </div>
 
       {error && (<p className="error">{error}</p>)}
+
+      {
+        loading && (
+          <div className="loading">
+            <div className="circle"></div>
+          </div>
+        )
+      }
     </form>
   )
 }

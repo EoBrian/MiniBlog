@@ -38,7 +38,7 @@ a.active, .nav-bar a:hover {
   .toggle-menu {
     position: absolute;
     top: -14px;
-    right: -5px;
+    right: 0px;
     display: block;
     
   }
