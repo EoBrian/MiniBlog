@@ -1,4 +1,5 @@
 .root-app header.menu-application {
+  position: relative;
   padding: 10px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
@@ -11,5 +12,13 @@
   align-items: center;
 }
 
+.footer-app {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  background-color: #ccc;
+  width: 100%;
+  padding: 20px;
+}
 
 

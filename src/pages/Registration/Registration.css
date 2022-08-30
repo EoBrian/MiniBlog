@@ -1,5 +1,4 @@
 form {
-  height: 80vh;
   text-align: center;
 }
 
@@ -31,7 +30,11 @@ input {
     padding: 10px;
   }
 
-  form {
+  form .fields {
     text-align: left;
+  }
+
+  form {
+    width: 90%;
   }
 }

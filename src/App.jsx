@@ -12,7 +12,8 @@ import {
 } from "react-router-dom"
 
 //components
-import MenuApplication from "./components/MenuApplication"
+import MenuApplication from "./components/MenuApplication/MenuApplication"
+import FooterApp from './components/FooterApp/FooterApp'
 
 //pages
 import Home from './pages/Home'
@@ -21,6 +22,7 @@ import DashBoard from './pages/DashBoard'
 import Login from './pages/Login/Login'
 import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
+
 
 
 function App() {
@@ -45,8 +47,8 @@ function App() {
           </Routes>
         </section>
 
-        <footer className="footer-application">
-
+        <footer className="footer-app">
+          <FooterApp/>
         </footer>
       </Router>
 

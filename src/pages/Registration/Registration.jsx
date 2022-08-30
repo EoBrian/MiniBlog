@@ -10,7 +10,10 @@ const Registration = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
+
   const onSubmit = data => {
+    setError(""); //reset error
+
     /*
     if password ! confirmPassword 
     return --> error
@@ -19,12 +22,13 @@ const Registration = () => {
     return --> data
     */
     if (data.password != data.confirmPassword) {
-      setError("senhas incompativeis")
+      setError("senhas incompativeis");
       return
-    } else {setError("")}
+    }
 
-    console.log(data)
+    console.log(data);
   }
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +52,7 @@ const Registration = () => {
       <div className="fields">
         <label>
           Senha
-          <input type="password" required {...register("password")}/>
+          <input type="password" minLength={8} required {...register("password")}/>
         </label>
       </div>
 

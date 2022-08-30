@@ -28,9 +28,7 @@ a.active, .nav-bar a:hover {
   transition: .6s;
 }
 
-.toggle-menu {
-  display: none;
-}
+
 
 @media screen and (min-width: 900px) {
   .menu-button {
@@ -38,17 +36,20 @@ a.active, .nav-bar a:hover {
   }
 
   .toggle-menu {
+    position: absolute;
+    top: -14px;
+    right: -5px;
     display: block;
     
   }
 
   .nav-bar ul {
-    display: flex;
-    flex-direction: row;
-    float: right;
+    display: inline-block;
+    
   }
 
   .nav-bar a, .nav-bar ul li {
+    display: inline-block;
     text-indent: 0;
     line-height: 2em;
     padding: 5px;
