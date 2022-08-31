@@ -9,9 +9,8 @@ import { useAuthentication } from "../../hooks/useAuthentication"
 
 const Registration = () => {
 
-  const { error: AuthError, loading, createUser } = useAuthentication()
+  const { error: authError, loading: authLoading, createUser } = useAuthentication()
   const [error, setError] = useState(null)
-
   const { register, handleSubmit } = useForm()
 
 
@@ -30,16 +29,15 @@ const Registration = () => {
       return
     } 
 
-    const response = await createUser(data)
-    console.log(data) 
+    await createUser(data)
     
   }
 
   useEffect(()=> {
-    if(AuthError) {
-      setError(AuthError)
+    if(authError) {
+      setError(authError)
     }
-  }, [AuthError])
+  }, [authError])
 
 
   return (
@@ -76,13 +74,17 @@ const Registration = () => {
       </div>
 
       <div className="fields">
-        <input type="submit" value="registrar" />
+        {
+          !authLoading && (
+            <input type="submit" value="registrar" />
+          )
+        }
       </div>
 
-      {error && (<p className="error">{error}</p>)}
+      {error && (<p className="error-message">{error}</p>)}
 
       {
-        loading && (
+        authLoading && (
           <div className="loading">
             <div className="circle"></div>
           </div>

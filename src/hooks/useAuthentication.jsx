@@ -13,6 +13,7 @@ import {
 
 
 export const useAuthentication = () => {
+
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(null)
   
@@ -49,33 +50,23 @@ export const useAuthentication = () => {
         displayName: data.username
       })
 
+      console.log(data)
 
       return user
 
-
     } catch (error) {
-      console.log(error.message);
-      console.log(typeof error.message)
 
-      let systemErrorMessage
+      setError(error.message)
 
-      if (error.message.include("Password")) {
-        systemErrorMessage = "A senha precisar conter no minimo 6 caracteres!"
-      } else if (error.message.include("email-alredy")) {
-        systemErrorMessage = "E-mail já cadastrado!"
-      } else {
-        systemErrorMessage = "Houve um erro no sistema! Tente novamente mais tarde!"
-      }
+    } finally {
 
-      setError(systemErrorMessage)
+      setLoading(false)
 
-    }
+      useEffect(()=> {
+        setCancelled(true)
+      },[])
 
-    setLoading(null)
-
-    useEffect(()=> {
-      return ()=> setCancelled(true)
-    },[])
+    }   
   }
 
   return {

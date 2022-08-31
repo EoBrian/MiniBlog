@@ -41,11 +41,14 @@ input {
 }
 
 /*for error's messages*/
-.error {
+.error-message {
   font-size: 1.3em;
-  color: red;
-  background-color: burlywood;
-  margin-top: 20px;
+  color: #202020;
+  background-color: #d87878;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 97%;
 }
 
 /*colapse menu*/
