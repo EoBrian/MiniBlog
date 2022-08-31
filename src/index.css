@@ -2,7 +2,7 @@
 
 :root {
   /*colors*/
-  --background-primary: #f0f8ff;
+  --background-primary: #e5eff8;
   --bs-color-primary: #22577a;
   --bs-color-secundary: #57CC99;
   --bs-color-bluebary: #38A3A5;
@@ -22,7 +22,6 @@ html, body, .root-app {
   height: 100%;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  background-color: var(--background-primary);
 }
 
 input::placeholder,
@@ -44,7 +43,7 @@ input {
 .error-message {
   font-size: 1.3em;
   color: #202020;
-  background-color: #d87878;
+  background-color: #f05151;
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
