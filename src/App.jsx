@@ -11,7 +11,8 @@ import { AuthProvider } from './context/AuthContext'
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom"
 
 //firebase
@@ -31,6 +32,7 @@ import DashBoard from './pages/DashBoard'
 import Login from './pages/Login/Login'
 import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
+import About from './pages/About'
 
 
 
@@ -66,11 +68,12 @@ function App() {
 
           <section className="container">
             <Routes>
-              <Route path="/" element={<Home/>}/>
-              <Route path="/post" element={<CreatePosts/>}/>
-              <Route path="/dashboard" element={<DashBoard/>}/>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/registration" element={<Registration/>}/>
+              <Route path="/" element={user ? (<Home/>) : (<Navigate to="/login"/>)}/>
+              <Route path="/create/post" element={user ? (<CreatePosts/>) : (<Navigate to="/login"/>)}/>
+              <Route path="/dashboard" element={user ? (<DashBoard/>) : (<Navigate to="/login"/>)}/>
+              <Route path="/about" element={<About/>} />
+              <Route path="/login" element={!user ? (<Login/>) : (<Navigate to="/"/>)}/>
+              <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </section>

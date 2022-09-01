@@ -8,11 +8,11 @@ import { useForm } from "react-hook-form"
 import { useAuthentication } from "../../hooks/useAuthentication"
 
 //react-router-dom
-import { Navigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 
 const Registration = () => {
 
-  const { error: authError, loading: authLoading, createUser, isLogged } = useAuthentication()
+  const { error: authError, loading: authLoading, createUser} = useAuthentication()
   const [error, setError] = useState(null)
   const { register, handleSubmit } = useForm()
 
@@ -84,12 +84,12 @@ const Registration = () => {
         }
       </div>
 
-      {
-        error && (<p className="error-message">{error}</p>)
-      }
+      <div>
+        <p>já possui uma conta? <span><Link to="/login">Faça seu login</Link></span></p>
+      </div>
 
       {
-        isLogged && (<Navigate to="/"/>)
+        error && (<p className="error-message">{error}</p>)
       }
 
       {

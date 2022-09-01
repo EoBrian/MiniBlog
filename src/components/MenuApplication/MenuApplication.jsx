@@ -3,6 +3,9 @@ import "./MenuApplication.css"
 //react
 import React, {useState} from 'react'
 
+//custom hoocks
+import { useAuthentication } from "../../hooks/useAuthentication"
+
 //context
 import { useAuthContext } from "../../context/AuthContext"
 
@@ -13,12 +16,14 @@ import { NavLink, Link } from 'react-router-dom'
 import IconMenu from "./menu.svg"
 import CloseMenu from "./close.svg"
 
+
 const MenuApplication = () => {
 
   const [menu, setMenu] = useState(true)
 
   const { user } = useAuthContext()
 
+  const { signOutUser } = useAuthentication()
   
 
   return (
@@ -53,11 +58,11 @@ const MenuApplication = () => {
                   <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/post">New Post</NavLink>
+                  <NavLink to="/create/post">New Post</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
-                </li>
+                </li>                
               </>
             ) :
             (
@@ -70,7 +75,19 @@ const MenuApplication = () => {
                 </li>
               </>
             )
-          }      
+          }    
+
+          <li>
+            <NavLink to="/about">About</NavLink>  
+          </li>  
+
+          {
+            user && (
+            <li>
+                <Link onClick={signOutUser} to="">Log-Out</Link>
+            </li>
+            )
+          }
           
         </ul>
       </div>

@@ -14,9 +14,10 @@ import {
 
 export const useAuthentication = () => {
 
+  const auth = getAuth()
+
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(null)
-  const [isLogged, setIsLogged] = useState(false)
   
   /*
   cleanup
@@ -24,9 +25,7 @@ export const useAuthentication = () => {
   */
   const [cancelled, setCancelled] = useState(false)
 
-  const auth = getAuth()
-
-
+ 
   function checkIfIsCancelled () {
     if (cancelled) {
       return
@@ -35,8 +34,20 @@ export const useAuthentication = () => {
 
 
   const createUser = async (data)=> {
+    /*
+    this function: try create user
+
+    if user existent --> error
+    else --> create user
+    */
+
+    //clear memory cache
     checkIfIsCancelled()
+
+    //loading while try create user
     setLoading(true)
+
+    //if existent error
     setError(null)
 
     try {
@@ -51,8 +62,6 @@ export const useAuthentication = () => {
         displayName: data.username
       })
 
-      setIsLogged(true)
-
       return user
 
     } catch (error) {
@@ -61,20 +70,30 @@ export const useAuthentication = () => {
 
     } finally {
 
-      setLoading(false)
+      setLoading(false) //stop loading
 
       useEffect(()=> {
         setCancelled(true)
       },[])
 
-    }   
+    }
+
   }
+
+   //logout - sign out
+   const signOutUser = ()=> {
+    checkIfIsCancelled()
+
+    signOut(auth)
+  }
+
 
   return {
     auth,
     error,
     loading,
-    isLogged,
-    createUser
+    createUser,
+    signOutUser,
+    checkIfIsCancelled
   }
 }
