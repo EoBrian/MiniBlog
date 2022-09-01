@@ -54,7 +54,7 @@ const Login = () => {
 
       {
         loading && (
-          <div className="loaging">
+          <div className="loading">
             <div className="circle"></div>
           </div>
         )
