@@ -2,7 +2,10 @@
 import './App.css'
 
 //react
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+//context
+import { AuthProvider } from './context/AuthContext'
 
 //react-router-dom
 import {
@@ -10,6 +13,12 @@ import {
   Routes,
   Route
 } from "react-router-dom"
+
+//firebase
+import { onAuthStateChanged } from 'firebase/auth'
+
+//custom hoocks
+import { useAuthentication } from './hooks/useAuthentication'
 
 //components
 import MenuApplication from "./components/MenuApplication/MenuApplication"
@@ -25,32 +34,52 @@ import NotFound from './pages/NotFound'
 
 
 
+
 function App() {
 
+  const [ user, setUser ] = useState(undefined)
+  const isLoadingUser = user === undefined
+
+  const { auth } = useAuthentication()
+
+  useEffect(()=> {
+    onAuthStateChanged(auth, (user)=> {
+      setUser(user);
+    })
+  }, [auth])
+
+
+  if (isLoadingUser) {
+    return <div className="loading">
+      <div className="circle"></div>
+    </div>
+  }
 
   return (
     <div className="root-app">
       
-      <Router>
-        <header className="menu-application">
-          <MenuApplication/>
-        </header>
+      <AuthProvider value={{user}}>
+        <Router>
+          <header className="menu-application">
+            <MenuApplication/>
+          </header>
 
-        <section className="container">
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/post" element={<CreatePosts/>}/>
-            <Route path="/dashboard" element={<DashBoard/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/registration" element={<Registration/>}/>
-            <Route path="*" element={<NotFound/>}/>
-          </Routes>
-        </section>
+          <section className="container">
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/post" element={<CreatePosts/>}/>
+              <Route path="/dashboard" element={<DashBoard/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/registration" element={<Registration/>}/>
+              <Route path="*" element={<NotFound/>}/>
+            </Routes>
+          </section>
 
-        <footer className="footer-app">
-          <FooterApp/>
-        </footer>
-      </Router>
+          <footer className="footer-app">
+            <FooterApp/>
+          </footer>
+        </Router>
+      </AuthProvider>
 
     </div>
   )

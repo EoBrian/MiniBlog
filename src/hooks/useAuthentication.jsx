@@ -16,6 +16,7 @@ export const useAuthentication = () => {
 
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(null)
+  const [isLogged, setIsLogged] = useState(false)
   
   /*
   cleanup
@@ -50,7 +51,7 @@ export const useAuthentication = () => {
         displayName: data.username
       })
 
-      console.log(data)
+      setIsLogged(true)
 
       return user
 
@@ -73,6 +74,7 @@ export const useAuthentication = () => {
     auth,
     error,
     loading,
+    isLogged,
     createUser
   }
 }

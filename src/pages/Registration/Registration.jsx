@@ -7,15 +7,18 @@ import { useForm } from "react-hook-form"
 //custom hoocks
 import { useAuthentication } from "../../hooks/useAuthentication"
 
+//react-router-dom
+import { Navigate } from "react-router-dom"
+
 const Registration = () => {
 
-  const { error: authError, loading: authLoading, createUser } = useAuthentication()
+  const { error: authError, loading: authLoading, createUser, isLogged } = useAuthentication()
   const [error, setError] = useState(null)
   const { register, handleSubmit } = useForm()
 
 
   const onSubmit = async data => {
-    setError(""); //reset error
+    setError(null); //reset error
 
     /*
     if password ! confirmPassword 
@@ -81,7 +84,13 @@ const Registration = () => {
         }
       </div>
 
-      {error && (<p className="error-message">{error}</p>)}
+      {
+        error && (<p className="error-message">{error}</p>)
+      }
+
+      {
+        isLogged && (<Navigate to="/"/>)
+      }
 
       {
         authLoading && (
