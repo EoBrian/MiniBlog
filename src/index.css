@@ -47,14 +47,15 @@ classes reutilizáveis
 .btn {
   padding: 4px;
   color: #fff;
-  background-color: #f00;
+  background-color: var(--bs-color-secundary);
   border: none;
   border-radius: 10px;
+  padding: 10px;
 }
 
 .btn:hover {
-  background-color: #fff;
-  color: #f00;
+  background-color: var(--background-primary);
+  color: var(--bs-color-secundary);
   transition: .5s;
 }
 
