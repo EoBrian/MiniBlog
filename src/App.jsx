@@ -26,13 +26,13 @@ import MenuApplication from "./components/MenuApplication/MenuApplication"
 import FooterApp from './components/FooterApp/FooterApp'
 
 //pages
-import Home from './pages/Home'
-import CreatePosts from './pages/CreatePosts'
-import DashBoard from './pages/DashBoard'
+import Home from './pages/Home/Home'
+import NewPost from './pages/NewPost/NewPost'
+import DashBoard from './pages/DashBoard/DashBoard'
 import Login from './pages/Login/Login'
 import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
-import About from './pages/About'
+import About from './pages/About/About'
 
 
 
@@ -66,10 +66,10 @@ function App() {
             <MenuApplication/>
           </header>
 
-          <section className="container">
+          <section className="container d-flex">
             <Routes>
               <Route path="/" element={user ? (<Home/>) : (<Navigate to="/login"/>)}/>
-              <Route path="/create/post" element={user ? (<CreatePosts/>) : (<Navigate to="/login"/>)}/>
+              <Route path="/create/post" element={user ? (<NewPost/>) : (<Navigate to="/login"/>)}/>
               <Route path="/dashboard" element={user ? (<DashBoard/>) : (<Navigate to="/login"/>)}/>
               <Route path="/about" element={<About/>} />
               <Route path="/login" element={!user ? (<Login/>) : (<Navigate to="/"/>)}/>

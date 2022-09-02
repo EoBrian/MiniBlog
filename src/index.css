@@ -18,8 +18,8 @@
   text-decoration: none;
 }
 
-html, body, .root-app {
-  height: 100%;
+html, body, .root {
+  min-height: 100%;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
 }
@@ -32,6 +32,44 @@ textarea::placeholder {
 input {
   border: none;
   border-bottom: 2px solid #22577a;
+}
+
+/*
+classes reutilizáveis
+- btn --> links to buttons
+- box --> align itens cotainer > box
+- d-flex --> display flex and align content
+- clear --> cleanup cicle float div.clear
+- error-message --> for error messages in system
+- loading and circle --> for load's in page
+*/
+
+.btn {
+  padding: 4px;
+  color: #fff;
+  background-color: #f00;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #f00;
+  transition: .5s;
+}
+
+.box {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vh-7 {
+  height: 50vh;
 }
 
 
@@ -86,3 +124,5 @@ input {
     transform: rotate(360deg);
   }
 }
+
+

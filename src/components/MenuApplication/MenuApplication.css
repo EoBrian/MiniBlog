@@ -1,3 +1,10 @@
+.log-out {
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+
+
 /*logo*/
 nav .logo a {
   color: #000;
@@ -15,19 +22,19 @@ nav .menu-button {
   margin-top: 10px;
 }
 
-.nav-bar a, .nav-bar ul li{
-  line-height: 3em;
-  text-indent: 10px;
-  color: #000;
+
+.nav-bar a {
   display: block;
+  padding: 15px;
+  color: #000;
+  border-radius: 10px;
 }
 
-a.active, .nav-bar a:hover {
+a.active, .nav-bar a:hover:not(.btn) {
   color: var(--bs-color-bluebary);
   background-color: #000;
   transition: .6s;
 }
-
 
 
 @media screen and (min-width: 900px) {
@@ -44,15 +51,19 @@ a.active, .nav-bar a:hover {
   }
 
   .nav-bar ul {
-    display: inline-block;
-    
-  }
-
-  .nav-bar a, .nav-bar ul li {
-    display: inline-block;
-    text-indent: 0;
-    line-height: 2em;
-    padding: 5px;
+    display: block;
+    position: relative;
+    bottom: 30px;
+    float: right;
     margin: 0;
   }
+
+  .nav-bar li{
+    display: inline-block;
+  }
+
+  .log-out {
+    position: static;
+  }
+
 }

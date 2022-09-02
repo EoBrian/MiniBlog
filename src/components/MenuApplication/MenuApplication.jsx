@@ -15,6 +15,7 @@ import { NavLink, Link } from 'react-router-dom'
 //icon's
 import IconMenu from "./menu.svg"
 import CloseMenu from "./close.svg"
+import LogOutIcon from "./log-out-outline.svg"
 
 
 const MenuApplication = () => {
@@ -84,7 +85,9 @@ const MenuApplication = () => {
           {
             user && (
             <li>
-                <Link onClick={signOutUser} to="">Log-Out</Link>
+                <button className="btn log-out" onClick={signOutUser}>
+                  <img width="30" src={LogOutIcon} alt="log-out-icon" />
+                </button>
             </li>
             )
           }
