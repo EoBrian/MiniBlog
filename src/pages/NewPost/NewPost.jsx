@@ -21,12 +21,12 @@ const NewPost = () => {
     setError(null)
 
     //is URL ?
-    try {
-      new URL(data.url)
-    } catch (error) {
-      setError("URL INVÁLIDA!")
-      return
-    }
+    // try {
+    //   new URL(data.url)
+    // } catch (error) {
+    //   setError("URL INVÁLIDA!")
+    //   return
+    // }
 
     setPostDB(data)
   }
