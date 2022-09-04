@@ -3,15 +3,31 @@ import "../Registration/Registration.css"
 
 //react-hoock-form
 import { useForm } from "react-hook-form"
+
+//hoocks
 import { useDataBase } from "../../hooks/useDataBase"
+import { useState } from "react"
+
 
 const NewPost = () => {
 
-  const {isLoading, setPostDB} = useDataBase()
-
+  const {isLoading, setPostDB, errorDB} = useDataBase("new-post")
   const {register, handleSubmit} = useForm()
+  const [error, setError] = useState(null)
+
 
   const onSubmit = (data)=> {
+
+    setError(null)
+
+    //is URL ?
+    try {
+      new URL(data.url)
+    } catch (error) {
+      setError("URL INVÁLIDA!")
+      return
+    }
+
     setPostDB(data)
   }
 
@@ -47,6 +63,18 @@ const NewPost = () => {
         <div className="fields">
           <input type="submit" value="publicar" />
         </div>
+
+        {
+          errorDB && (
+            <div className="error-message">{errorDB}</div>
+          )
+        }
+
+        {
+          error && (
+            <div className="error-message">{error}</div>
+          )
+        }
       </form>
     
   )

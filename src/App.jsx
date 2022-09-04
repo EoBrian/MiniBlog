@@ -66,7 +66,7 @@ function App() {
             <MenuApplication/>
           </header>
 
-          <section className="container d-flex">
+          <main className="container d-flex">
             <Routes>
               <Route path="/" element={user ? (<Home/>) : (<Navigate to="/login"/>)}/>
               <Route path="/create/post" element={user ? (<NewPost/>) : (<Navigate to="/login"/>)}/>
@@ -76,7 +76,7 @@ function App() {
               <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
-          </section>
+          </main>
 
           <footer className="footer-app">
             <FooterApp/>

@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react'
 
-import { db } from '../firebase/config'
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
   updateProfile,
   signOut
 } from "firebase/auth"

@@ -61,16 +61,13 @@ classes reutilizáveis
 
 .box {
   text-align: center;
+  width: 90%;
 }
 
 .d-flex {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.vh-7 {
-  height: 50vh;
 }
 
 
@@ -127,3 +124,8 @@ classes reutilizáveis
 }
 
 
+@media screen and (min-width:900px) {
+  .box {
+    width: 50%;
+  }
+}

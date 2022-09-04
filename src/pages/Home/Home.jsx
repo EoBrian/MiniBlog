@@ -1,7 +1,18 @@
+//hoocks
+import Posts from "../../components/Posts/Posts"
+import { useFetchDocuments } from "../../hooks/useFetchDocuments"
+
+//components
+
+
+//css
 import "./Home.css"
 
 
 const Home = () => {
+
+  const {document: posts} = useFetchDocuments("new-post")
+  
   return (
     <div className="box">
       <div className="post">
@@ -11,6 +22,9 @@ const Home = () => {
         </figure>
         <p className="leg-post">Compartilhe a melhor versão de você mesmo!</p>
       </div>
+
+      <Posts posts={posts}/>
+      
     </div>
   )
 }
