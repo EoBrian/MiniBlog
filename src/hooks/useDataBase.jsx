@@ -36,7 +36,6 @@ export const useDataBase = (docName) => {
   }
 
   return {
-    dataPost,
     setPostDB,
     isLoading,
     errorDB
