@@ -1,12 +1,10 @@
 const Posts = ({posts}) => {
 
-  console.log(posts)
-
   return (
-    <div className='posts'>
-      <ul>
+    <div>
+      <ul className="box-post">
         {posts && posts.map((e)=> (
-          <li key={e.id}>
+          <li key={e.id}  className='posts'>
 
             <h2 className="title-post">{e.title}</h2>
 

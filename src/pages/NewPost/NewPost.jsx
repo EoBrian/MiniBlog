@@ -7,10 +7,12 @@ import { useForm } from "react-hook-form"
 //hoocks
 import { useDataBase } from "../../hooks/useDataBase"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 const NewPost = () => {
-
+  
+  const navigate = useNavigate()
   const {isLoading, setPostDB, errorDB} = useDataBase("new-post")
   const {register, handleSubmit} = useForm()
   const [error, setError] = useState(null)
@@ -21,14 +23,15 @@ const NewPost = () => {
     setError(null)
 
     //is URL ?
-    // try {
-    //   new URL(data.url)
-    // } catch (error) {
-    //   setError("URL INVÁLIDA!")
-    //   return
-    // }
+    try {
+      let url = new URL(data.img)
+    } catch (error) {
+      setError("URL INVÁLIDA!")
+      return
+    }
 
     setPostDB(data)
+    navigate("/")
   }
 
   if (isLoading) {
@@ -41,6 +44,8 @@ const NewPost = () => {
     
       
       <form onSubmit={handleSubmit(onSubmit)}>
+        
+
         <h2>Compartilhe momentos!</h2>
         <div className="fields">
           <label>

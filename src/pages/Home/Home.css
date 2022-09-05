@@ -1,3 +1,36 @@
-.post {
-  width: 30%;
+.box-post {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.posts {
+  border: 3px solid #d6d3d39a;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.title-post {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.leg-post {
+  padding: 10px;
+  border-top: 1px solid;
+}
+
+@media screen and (min-width:527px) {
+  .posts {
+    width: 45%;
+    
+  }
+}
+
+@media screen and (min-width:900px) {
+  .posts {
+    width: 30%;
+  }
 }

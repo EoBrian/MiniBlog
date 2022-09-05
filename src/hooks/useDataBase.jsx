@@ -26,7 +26,6 @@ export const useDataBase = (docName) => {
         legend: post.legend
       })
 
-      console.log(docRef.id);
       
     } catch (error) {
       setErrorDB(error.message);

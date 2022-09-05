@@ -19,12 +19,18 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
   const {checkIfIsCancelled} = useAuthentication()
   const [document, setDocument] = useState(null)
+  const [isLoading, setIsLoading] = useState(null)
+  const [error, setError] = useState(null)
+
 
   useEffect(()=> {
 
     const getPostsDB = async ()=> {
       
       checkIfIsCancelled()
+
+      setIsLoading(true)
+      setError(null)
 
       const collectionRef = await collection(db, docCollection)
       
@@ -44,7 +50,9 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
         
       } catch (error) {
-        console.log(error.message)
+        setError(error.message)
+      } finally {
+        setIsLoading(null)
       }
     }
 
@@ -54,6 +62,8 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
 
   return {
-    document
+    document,
+    isLoading,
+    error
   }
 }
