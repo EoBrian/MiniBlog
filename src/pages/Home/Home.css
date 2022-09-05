@@ -1,4 +1,4 @@
-.box-post {
+.box-post, .posts {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,13 +13,20 @@
 }
 
 .title-post {
+  width: 100%;
   text-align: left;
   margin-bottom: 5px;
 }
 
 .leg-post {
+  width: 100%;
   padding: 10px;
   border-top: 1px solid;
+}
+
+figure {
+  background-color: #00000028;
+  
 }
 
 @media screen and (min-width:527px) {
