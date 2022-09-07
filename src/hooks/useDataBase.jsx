@@ -1,17 +1,27 @@
+//hoocks
 import { useState } from "react"
+import { useAuthentication } from "./useAuthentication"
+
+//context
+import { useAuthContext } from "../context/AuthContext"
 
 //forebase
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, Timestamp } from "firebase/firestore"
 import { db } from "../firebase/config"
-import { useAuthentication } from "./useAuthentication"
+
+
 
 
 export const useDataBase = (docName) => {
+
+  const {user} = useAuthContext()
 
   const {checkIfIsCancelled} = useAuthentication() 
 
   const [isLoading, setIsLoading] = useState(null)
   const [errorDB, setErrorDB] = useState(null)
+ 
+
 
   const setPostDB = async (post)=> {
     checkIfIsCancelled()
@@ -23,7 +33,11 @@ export const useDataBase = (docName) => {
       const docRef = await addDoc(collection(db, docName), {
         title: post.title,
         img: post.img,
-        legend: post.legend
+        tags: post.tags,
+        legend: post.legend,
+        uid: user.uid,
+        createdBy: user.displayName,
+        createdAt: Timestamp.now(),
       })
 
       
@@ -33,6 +47,7 @@ export const useDataBase = (docName) => {
       setIsLoading(false);
     }
   }
+
 
   return {
     setPostDB,

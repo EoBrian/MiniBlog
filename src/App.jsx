@@ -33,6 +33,7 @@ import Login from './pages/Login/Login'
 import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
 import About from './pages/About/About'
+import Post from './pages/Post/Post'
 
 
 
@@ -74,6 +75,7 @@ function App() {
               <Route path="/about" element={<About/>} />
               <Route path="/login" element={!user ? (<Login/>) : (<Navigate to="/"/>)}/>
               <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>
+              <Route path="/post/:id" element={<Post/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </main>

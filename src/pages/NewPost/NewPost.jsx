@@ -16,21 +16,27 @@ const NewPost = () => {
   const {isLoading, setPostDB, errorDB} = useDataBase("new-post")
   const {register, handleSubmit} = useForm()
   const [error, setError] = useState(null)
-
+  
 
   const onSubmit = (data)=> {
-
     setError(null)
 
     //is URL ?
     try {
-      let url = new URL(data.img)
+      new URL(data.img)
     } catch (error) {
       setError("URL INVÁLIDA!")
       return
     }
 
+    //tags array
+    const tagsArray = data.tags.split(",").map((tag) => tag.trim().toLowerCase())
+    data.tags = [...tagsArray]
+    
+    //send data to FirebaseDB
     setPostDB(data)
+    
+    //return to home page
     navigate("/")
   }
 
@@ -41,43 +47,33 @@ const NewPost = () => {
   }
 
   return (
-    
-      
       <form onSubmit={handleSubmit(onSubmit)}>
-        
-
         <h2>Compartilhe momentos!</h2>
-        <div className="fields">
-          <label>
-            Título da postagem
-            <input type="text" maxLength={50} {...register("title")} />
-          </label>          
-        </div>
         <div className="fields" >
           <label>
             url da imagem
-            <input type="text" {...register("img")} />
+            <input type="text" required {...register("img")} placeholder="ex: https://www.imagem-exaple.com" />
           </label>
         </div>
         <div className="fields">
           <label>
             Legenda
-            <input type="text" maxLength={150} {...register("legend")} />
+            <input type="text" required maxLength={150} {...register("legend")} />
           </label>
+        </div>
+        <div className="fields">
+          <label>
+            Tags separadas por vírgula
+            <input type="text" maxLength={50} placeholder="ex: react, firebase" {...register("tags")} />
+          </label>          
         </div>
         <div className="fields">
           <input type="submit" value="publicar" />
         </div>
 
         {
-          errorDB && (
+          errorDB || error && (
             <div className="error-message">{errorDB}</div>
-          )
-        }
-
-        {
-          error && (
-            <div className="error-message">{error}</div>
           )
         }
       </form>

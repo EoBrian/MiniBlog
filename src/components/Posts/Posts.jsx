@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router-dom"
+
+
 const Posts = ({posts}) => {
+
+  const navigate = useNavigate()
 
   return (
     <div>
       <ul className="box-post">
-        {posts && posts.map((e)=> (
-          <li key={e.id}  className='posts'>
-
-            <h2 className="title-post">{e.title}</h2>
+        {posts.map((e)=> (
+          <li key={e.id}  className='posts' onClick={()=> navigate(`/post/${e.id}`)}>
 
             <figure>
               <img className="img=post"
@@ -14,8 +17,17 @@ const Posts = ({posts}) => {
                 src={e.img}
                 alt={e.title} />
             </figure>
-
+            
+            <p><em>{e.createdBy}</em></p>
+            
             <p className="leg-post">{e.legend}</p>
+            
+            {e.tags && e.tags.map((tag, i)=> (
+              <p className="tags" key={i}>
+                <span>#</span> {tag}
+              </p>
+            ))}
+            
           </li>
         ))}
       </ul>
