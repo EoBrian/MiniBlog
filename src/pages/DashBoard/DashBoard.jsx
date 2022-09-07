@@ -8,10 +8,8 @@ import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 
 const DashBoard = () => {
   const {user} = useAuthContext()
-  const {document:posts} = useFetchDocuments("new-post")
-  
+  const {document:posts} = useFetchDocuments("new-post", user.uid)
 
-  
   return (
     <div>
       <p>Olá {user.displayName}!</p>

@@ -24,7 +24,7 @@ const Posts = ({posts}) => {
             
             {e.tags && e.tags.map((tag, i)=> (
               <p className="tags" key={i}>
-                <span>#</span> {tag}
+                <span>#</span>{tag}
               </p>
             ))}
             

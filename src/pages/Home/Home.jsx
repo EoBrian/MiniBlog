@@ -5,20 +5,20 @@ import { useState } from "react"
 
 //components
 import Posts from "../../components/Posts/Posts"
+import Query from "../../components/Query/Query"
 
 //css
 import "./Home.css"
 
 
-
-
 const Home = () => {
 
   const {document: posts, isLoading, error} = useFetchDocuments("new-post")
-  
   const navigate = useNavigate()
 
   let isPosts = posts != null && posts.length == 0
+
+  
 
   if (isLoading) {
     return <div className="loading">
@@ -29,15 +29,7 @@ const Home = () => {
 
   return (
     <article className="box">
-
-      <form>        
-        <input type="text" placeholder="pesquise por tags" />
-        <span>
-          <button className="btn">
-            pesquisar
-          </button>          
-        </span>
-      </form>
+      <Query />
 
       {error && (
         <div className="error-message">{error}</div>

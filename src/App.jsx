@@ -34,8 +34,7 @@ import Registration from './pages/Registration/Registration'
 import NotFound from './pages/NotFound'
 import About from './pages/About/About'
 import Post from './pages/Post/Post'
-
-
+import Search from './pages/Search/Search'
 
 
 function App() {
@@ -76,6 +75,7 @@ function App() {
               <Route path="/login" element={!user ? (<Login/>) : (<Navigate to="/"/>)}/>
               <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>
               <Route path="/post/:id" element={<Post/>}/>
+              <Route path="/search" element={<Search/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </main>

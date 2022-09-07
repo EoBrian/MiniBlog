@@ -48,10 +48,8 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
         if (uid) {
           q = await doc(collectionRef, uid);
 
-        } else if (search){
-          q = await query(collectionRef, where(search))
-
-          console.log(q)
+        }else if (search){
+          q = await query(collectionRef, where("tags", "array-contains", search), orderBy("createdAt", "desc"))
         } else {
           q = await query(collectionRef, orderBy("createdAt", "desc"))
         }

@@ -13,9 +13,9 @@ import { useAuthContext } from "../../context/AuthContext"
 import { NavLink, Link } from 'react-router-dom'
 
 //icon's
-import IconMenu from "./menu.svg"
-import CloseMenu from "./close.svg"
-import LogOutIcon from "./log-out-outline.svg"
+import IconMenu from "../../assets/menu.svg"
+import CloseMenu from "../../assets/close.svg"
+import LogOutIcon from "../../assets/log-out-outline.svg"
 
 
 const MenuApplication = () => {
