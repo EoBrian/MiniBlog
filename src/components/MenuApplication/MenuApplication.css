@@ -42,7 +42,7 @@ a.active, .nav-bar a:hover:not(.btn) {
     display: none;
   }
 
-  .nav-bar li {
+  .nav-bar ul, .nav-bar li {
     display: inline-block;
   }
 
