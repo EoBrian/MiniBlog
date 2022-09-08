@@ -10,15 +10,28 @@ const Query = () => {
   const navigate = useNavigate()
   const [query, setQuery] = useState("")
 
+  const handleSubmit = (e)=> {
+    e.preventDefault()
+    
+    if (!query){
+      navigate("/")
+      return
+    }
+    
+    navigate(`/search?q=${query}`)
+  }
 
   return (
-    <form onSubmit={(e)=> e.preventDefault()}>        
+    <form >       
+      
       <input type="text" placeholder="pesquise por tags" value={query} onChange={(e)=> setQuery(e.target.value)} />
       <span>
-        <button className="btn" onClick={()=> navigate(`/search?q=${query}`)}>
+        <button type='button' className="btn" onClick={handleSubmit}>
           <img src={queryIcon} alt="query icon" width="20" />
         </button>          
+        {/* <input type="submit" value="🔎" /> */}
       </span>
+
     </form>
   )
 }

@@ -9,7 +9,7 @@ const Posts = ({posts}) => {
     <div>
       <ul className="box-post">
         {posts.map((e)=> (
-          <li key={e.id}  className='posts' onClick={()=> navigate(`/post/${e.id}`)}>
+          <li key={e.id}  className='posts' >
 
             <figure>
               <img className="img=post"
@@ -21,13 +21,17 @@ const Posts = ({posts}) => {
             <p><em>{e.createdBy}</em></p>
             
             <p className="leg-post">{e.legend}</p>
-            
-            {e.tags && e.tags.map((tag, i)=> (
-              <p className="tags" key={i}>
-                <span>#</span>{tag}
-              </p>
-            ))}
-            
+
+            <ul>
+              {e.tags && e.tags.map((tag, i)=> (                
+                <li className="tags" key={i}>
+                  <p  onClick={()=> navigate(`/search?q=${tag}`)}><span>#</span>{tag}</p>
+                </li>                
+              ))}
+            </ul>
+
+            <button className="btn" onClick={()=> navigate(`/post/${e.id}`)}>Ver mais</button>
+            <div className="clear"></div>
           </li>
         ))}
       </ul>

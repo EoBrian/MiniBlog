@@ -23,7 +23,7 @@ const NewPost = () => {
 
     //is URL ?
     try {
-      new URL(data.img)
+      const url = new URL(data.img)
     } catch (error) {
       setError("URL INVÁLIDA!")
       return

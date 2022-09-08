@@ -10,8 +10,6 @@ import { collection, addDoc, Timestamp } from "firebase/firestore"
 import { db } from "../firebase/config"
 
 
-
-
 export const useDataBase = (docName) => {
 
   const {user} = useAuthContext()
@@ -31,7 +29,6 @@ export const useDataBase = (docName) => {
     try {
 
       const docRef = await addDoc(collection(db, docName), {
-        title: post.title,
         img: post.img,
         tags: post.tags,
         legend: post.legend,

@@ -29,6 +29,7 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
   const [error, setError] = useState(null)
 
 
+
   //show posts
   useEffect(()=> {
 
@@ -38,6 +39,7 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
       setIsLoading(true)
       setError(null)
+      
 
       const collectionRef = await collection(db, docCollection)
 
@@ -46,8 +48,7 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
         //query        
         if (uid) {
-          q = await doc(collectionRef, uid);
-
+          q = await doc(collectionRef, uid);          
         }else if (search){
           q = await query(collectionRef, where("tags", "array-contains", search), orderBy("createdAt", "desc"))
         } else {
@@ -56,13 +57,9 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
        
         await onSnapshot(q, (querySnapshot)=> setDocument(
           !uid ? 
-
             querySnapshot.docs.map((doc)=> ({id: doc.id, ...doc.data()}))
-
-            :
-          
-            {id: querySnapshot.id, ...querySnapshot.data()}
-          
+            :          
+            {id: querySnapshot.id, ...querySnapshot.data()}          
         ))
 
       } catch (error) {

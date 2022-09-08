@@ -10,6 +10,10 @@
   transition: .4s;
 }
 
+.posts button {
+  float: right;
+}
+
 .title-post {
   text-align: left;
   margin-bottom: 5px;
@@ -19,6 +23,7 @@
   display: inline-block;
   margin-right: 5px;
   color: var(--bs-color-bluebary);
+  cursor: pointer;
 }
 
 .leg-post {
@@ -35,6 +40,8 @@
 figure img{
   max-width: 600px;  
 }
+
+
 
 @media (max-width: 991.98px) {
   .box form {
