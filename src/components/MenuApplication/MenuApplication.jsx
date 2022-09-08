@@ -28,7 +28,7 @@ const MenuApplication = () => {
   
 
   return (
-    <nav>
+    <>
 
       {/* colapse menu */}
       <div 
@@ -39,18 +39,11 @@ const MenuApplication = () => {
       </div>
 
       <div className="logo">
-        {
-          user ? (
-            <Link to="/">Mini <strong>BLOG</strong> </Link>
-          ) :
-          (
-            <Link to="/login">Mini <strong>BLOG</strong> </Link>
-          )
-        }
+        <Link to={user ? "/" : "/login"}>Mini <strong>BLOG</strong> </Link>
       </div>
       
 
-      <div className="nav-bar">
+      <nav className="nav-bar">
         <ul className={menu ? "toggle-menu": undefined}>
           {
             user ? (
@@ -93,10 +86,10 @@ const MenuApplication = () => {
           }
           
         </ul>
-      </div>
+      </nav>
 
       <div className="clear"></div>
-    </nav>
+    </>
   )
 }
 

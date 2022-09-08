@@ -6,15 +6,15 @@
 
 
 /*logo*/
-nav .logo a {
+.logo a {
   color: #000;
   font-size: 1.3em;
-} nav .logo a strong {
+} .logo a strong {
   color: var(--bs-color-bluebary);
 }
 
 /*nav-bar*/
-nav .menu-button {
+.menu-button {
   float: right;
 }
 
@@ -42,28 +42,13 @@ a.active, .nav-bar a:hover:not(.btn) {
     display: none;
   }
 
-  .toggle-menu {
-    position: absolute;
-    top: -14px;
-    right: 0px;
-    display: block;
-    
-  }
-
-  .nav-bar ul {
-    display: block;
-    position: relative;
-    bottom: 30px;
-    float: right;
-    margin: 0;
-  }
-
-  .nav-bar li{
+  .nav-bar li {
     display: inline-block;
   }
 
+
   .log-out {
-    position: static;
+    right: 0;
   }
 
 }

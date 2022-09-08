@@ -20,4 +20,16 @@
   padding: 20px;
 }
 
+@media screen and (min-width: 900px){
+  .menu-application{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+}
+
+
+
 
