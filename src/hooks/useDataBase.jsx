@@ -1,24 +1,25 @@
 //hoocks
 import { useState } from "react"
 import { useAuthentication } from "./useAuthentication"
+import { useNavigate } from "react-router-dom"
 
 //context
 import { useAuthContext } from "../context/AuthContext"
 
 //forebase
-import { collection, addDoc, Timestamp } from "firebase/firestore"
+import { collection, addDoc, Timestamp, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../firebase/config"
 
 
 export const useDataBase = (docName) => {
-
+  
   const {user} = useAuthContext()
 
   const {checkIfIsCancelled} = useAuthentication() 
 
   const [isLoading, setIsLoading] = useState(null)
   const [errorDB, setErrorDB] = useState(null)
- 
+  const navigate = useNavigate()
 
 
   const setPostDB = async (post)=> {
@@ -28,7 +29,7 @@ export const useDataBase = (docName) => {
 
     try {
 
-      const docRef = await addDoc(collection(db, docName), {
+      await addDoc(collection(db, docName), {
         img: post.img,
         tags: post.tags,
         legend: post.legend,
@@ -45,8 +46,24 @@ export const useDataBase = (docName) => {
     }
   }
 
+    //delele post with id
+    const deleteDocument = async (id_post)=> {
+      checkIfIsCancelled()
+      setErrorDB(null)
+      setIsLoading(true)
+
+      try {
+        await deleteDoc(doc(collection(db, docName), id_post))
+      } catch (error) {
+        setErrorDB(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
 
   return {
+    deleteDocument,
     setPostDB,
     isLoading,
     errorDB

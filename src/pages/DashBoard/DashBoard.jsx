@@ -24,7 +24,7 @@ const DashBoard = () => {
       </div>
 
       <h2>Edite aqui os seus posts</h2>
-      {posts && <Posts posts={posts}/>}
+      {posts && <Posts user_id={user.uid} posts={posts}/>}
     </article>
   )
 }

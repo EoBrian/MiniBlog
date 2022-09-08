@@ -9,10 +9,10 @@ import {
   onSnapshot,
   where,
   doc,
-  deleteDoc
 } from "firebase/firestore"
 
 import { useAuthentication } from "./useAuthentication";
+import { useDataBase } from "./useDataBase";
 
 
 export const useFetchDocuments = (docCollection= "new-post", search=null, uid=null, id_post=null)=> {
@@ -28,7 +28,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
   const [document, setDocument] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const [error, setError] = useState(null)
-
+  const {deleteDocument} = useDataBase(docCollection)
 
 
   //show posts
@@ -77,17 +77,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
   },[docCollection, search, uid, id_post])
 
 
-  //delele post with id
-  const deleteDocument = async ()=> {
-    try {
-      await deleteDoc(doc(collectionRef, id_post))
-    } catch (error) {
-      setError(error)
-    }
-  }
-
   return {
-    deleteDocument,
     document,
     isLoading,
     error
