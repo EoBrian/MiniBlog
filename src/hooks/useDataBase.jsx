@@ -57,6 +57,7 @@ export const useDataBase = (docName) => {
     try {
       await deleteDoc(doc(collection(db, docName), id_post))
       setLoad(true)
+      navigate("/")
     } catch (error) {
       setErrorDB(error.message)
     } finally {
@@ -64,16 +65,11 @@ export const useDataBase = (docName) => {
     }
   }
 
-  useEffect(()=>{
-    setLoad(null)
-  },[load])
-  
-
+ 
   return {
     deleteDocument,
     setPostDB,
     isLoading,
     errorDB,
-    load
   }
 }

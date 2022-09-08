@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore"
 
 import { useAuthentication } from "./useAuthentication";
-import { useDataBase } from "./useDataBase";
 
 
 export const useFetchDocuments = (docCollection= "new-post", search=null, uid=null, id_post=null)=> {
@@ -28,7 +27,6 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
   const [document, setDocument] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const [error, setError] = useState(null)
-  const {load} = useDataBase(docCollection)
 
 
   //show posts
@@ -74,7 +72,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
 
     getPostsDB()
 
-  },[docCollection, search, uid, id_post, load])
+  },[docCollection, search, uid, id_post])
 
 
   return {
