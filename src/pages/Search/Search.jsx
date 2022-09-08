@@ -22,9 +22,14 @@ const Search = () => {
         <div className="error-message">{error}</div>
       )}
 
-      <Query value={query.get("q")}/>
+      <Query p_holder={query.get("q")}/>
       
-      {posts ? <Posts posts={posts}/> : (<p>Nenhuma postagem sobre: <strong>{query.get("q")}</strong></p>)}
+      {posts ? (
+        <>
+          <p>Foi encontrado <strong>{posts.length}</strong> resultados para <strong>{query.get("q")}</strong></p>
+          <Posts posts={posts}/>
+        </>
+      ) : (<p> nenhum para <strong>{query.get("q")}</strong></p>)}
     </article>
   )
 }
