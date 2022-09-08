@@ -1,5 +1,5 @@
 //hoocks
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAuthentication } from "./useAuthentication"
 import { useNavigate } from "react-router-dom"
 
@@ -11,6 +11,7 @@ import { collection, addDoc, Timestamp, doc, deleteDoc } from "firebase/firestor
 import { db } from "../firebase/config"
 
 
+
 export const useDataBase = (docName) => {
   
   const {user} = useAuthContext()
@@ -19,6 +20,7 @@ export const useDataBase = (docName) => {
 
   const [isLoading, setIsLoading] = useState(null)
   const [errorDB, setErrorDB] = useState(null)
+  const [load, setLoad] = useState(null)
   const navigate = useNavigate()
 
 
@@ -46,26 +48,32 @@ export const useDataBase = (docName) => {
     }
   }
 
-    //delele post with id
-    const deleteDocument = async (id_post)=> {
-      checkIfIsCancelled()
-      setErrorDB(null)
-      setIsLoading(true)
+  //delele post with id
+  const deleteDocument = async (id_post)=> {
+    checkIfIsCancelled()
+    setErrorDB(null)
+    setIsLoading(true)
 
-      try {
-        await deleteDoc(doc(collection(db, docName), id_post))
-      } catch (error) {
-        setErrorDB(error.message)
-      } finally {
-        setIsLoading(false)
-      }
+    try {
+      await deleteDoc(doc(collection(db, docName), id_post))
+      setLoad(true)
+    } catch (error) {
+      setErrorDB(error.message)
+    } finally {
+      setIsLoading(false)
     }
+  }
 
+  useEffect(()=>{
+    setLoad(null)
+  },[load])
+  
 
   return {
     deleteDocument,
     setPostDB,
     isLoading,
-    errorDB
+    errorDB,
+    load
   }
 }

@@ -28,6 +28,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
   const [document, setDocument] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const [error, setError] = useState(null)
+  const {load} = useDataBase(docCollection)
 
 
   //show posts
@@ -73,7 +74,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
 
     getPostsDB()
 
-  },[docCollection, search, uid, id_post])
+  },[docCollection, search, uid, id_post, load])
 
 
   return {
