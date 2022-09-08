@@ -24,6 +24,7 @@ import { useAuthentication } from './hooks/useAuthentication'
 //components
 import MenuApplication from "./components/MenuApplication/MenuApplication"
 import FooterApp from './components/FooterApp/FooterApp'
+import Loading from './components/Loading'
 
 //pages
 import Home from './pages/Home/Home'
@@ -51,15 +52,13 @@ function App() {
   }, [auth])
 
 
-  if (isLoadingUser) {
-    return <div className="loading">
-      <div className="circle"></div>
-    </div>
-  }
+
 
   return (
     <div className="root-app">
       
+      <Loading loading={isLoadingUser}/>
+
       <AuthProvider value={{user}}>
         <Router>
           <header className="menu-application">

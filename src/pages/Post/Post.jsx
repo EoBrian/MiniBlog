@@ -1,23 +1,23 @@
+//hoocks
 import {useParams} from "react-router-dom"
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
+
+//components
+import Loading from "../../components/Loading"
 
 const Post = () => {
 
   const {id} = useParams()
-  const {document:post, isLoading, error} = useFetchDocuments("new-post", null, id)
+  const {document:post, isLoading, error} = useFetchDocuments("new-post", null, null, id)
   
   
-  if (isLoading) {
-    return <div className="loading">
-      <div className="circle"></div>
-    </div>
-  }
-
   return (
     <div>
+
+      <Loading error={error} loading={isLoading}/>
+
       {post && (
         <>
-          <h2>{post.title}</h2>
           <figure>
             <img src={post.img} width="100%" alt="" />
           </figure>

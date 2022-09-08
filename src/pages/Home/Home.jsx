@@ -6,6 +6,7 @@ import { useState } from "react"
 //components
 import Posts from "../../components/Posts/Posts"
 import Query from "../../components/Query/Query"
+import Loading from "../../components/Loading"
 
 //css
 import "./Home.css"
@@ -18,22 +19,13 @@ const Home = () => {
 
   let isPosts = posts != null && posts.length == 0
 
-  
-
-  if (isLoading) {
-    return <div className="loading">
-      <div className="circle"></div>
-    </div>
-  }
-
 
   return (
     <article className="box">
-      <Query />
 
-      {error && (
-        <div className="error-message">{error}</div>
-      )}
+      <Loading error={error} loading={isLoading}/>
+      
+      <Query />
 
       {posts && (<Posts posts={posts}/>)}
         

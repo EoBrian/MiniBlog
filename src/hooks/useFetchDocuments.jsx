@@ -15,13 +15,14 @@ import {
 import { useAuthentication } from "./useAuthentication";
 
 
-export const useFetchDocuments = (docCollection= "new-post", search= null, uid= null)=> {
+export const useFetchDocuments = (docCollection= "new-post", search=null, uid=null, id_post=null)=> {
   /*
   useFetchDocuments ---> search data with paraments:
 
   -- docCollection --> name document
   -- search --> return data from tagsArray of the one data
-  -- uid --> return only one data from uid
+  -- uid --> return post with user id == user.uid
+  -- id_post --> return only one data from uid
   */
   const {checkIfIsCancelled} = useAuthentication()
   const [document, setDocument] = useState(null)
@@ -48,7 +49,9 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
         //query        
         if (uid) {
-          q = await doc(collectionRef, uid);          
+          q = await query(collectionRef, where("uid", "==", uid), orderBy("createdAt", "asc"));
+        } else if (id_post) {
+          q = await doc(collectionRef, id_post);
         }else if (search){
           q = await query(collectionRef, where("tags", "array-contains", search), orderBy("createdAt", "desc"))
         } else {
@@ -56,7 +59,7 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
         }
        
         await onSnapshot(q, (querySnapshot)=> setDocument(
-          !uid ? 
+          !id_post ? 
             querySnapshot.docs.map((doc)=> ({id: doc.id, ...doc.data()}))
             :          
             {id: querySnapshot.id, ...querySnapshot.data()}          
@@ -71,13 +74,13 @@ export const useFetchDocuments = (docCollection= "new-post", search= null, uid= 
 
     getPostsDB()
 
-  },[docCollection, search, uid])
+  },[docCollection, search, uid, id_post])
 
 
   //delele post with id
   const deleteDocument = async ()=> {
     try {
-      await deleteDoc(doc(collectionRef, uid))
+      await deleteDoc(doc(collectionRef, id_post))
     } catch (error) {
       setError(error)
     }
