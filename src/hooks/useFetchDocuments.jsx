@@ -28,7 +28,6 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
   const [document, setDocument] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const [error, setError] = useState(null)
-  const {deleteDocument} = useDataBase(docCollection)
 
 
   //show posts
