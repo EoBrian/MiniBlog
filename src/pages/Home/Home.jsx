@@ -21,8 +21,7 @@ const Home = () => {
 
 
   return (
-    <article className="box">
-
+    <>
       <Loading error={error} loading={isLoading}/>
       
       <Query />
@@ -36,8 +35,7 @@ const Home = () => {
         </>
       )}
       
-
-    </article>
+    </>
   )
 }
 

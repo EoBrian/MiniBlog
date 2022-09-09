@@ -60,7 +60,7 @@ export const useFetchDocuments = (docCollection= "new-post", search=null, uid=nu
           !id_post ? 
             querySnapshot.docs.map((doc)=> ({id: doc.id, ...doc.data()}))
             :          
-            {id: querySnapshot.id, ...querySnapshot.data()}          
+            {id: querySnapshot.id, ...querySnapshot.data()}     
         ))
 
       } catch (error) {

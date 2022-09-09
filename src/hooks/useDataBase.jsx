@@ -20,7 +20,6 @@ export const useDataBase = (docName) => {
 
   const [isLoading, setIsLoading] = useState(null)
   const [errorDB, setErrorDB] = useState(null)
-  const [load, setLoad] = useState(null)
   const navigate = useNavigate()
 
 
@@ -56,8 +55,7 @@ export const useDataBase = (docName) => {
 
     try {
       await deleteDoc(doc(collection(db, docName), id_post))
-      setLoad(true)
-      navigate("/")
+      navigate("/dashboard")
     } catch (error) {
       setErrorDB(error.message)
     } finally {
