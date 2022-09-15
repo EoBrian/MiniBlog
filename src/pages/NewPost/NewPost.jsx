@@ -19,14 +19,10 @@ const NewPost = () => {
   const [error, setError] = useState(null)
   const [img, setImg] = useState(null)
   const {id} = useParams()
-  const {document:data} = useFetchDocuments("new-post", null, null, id)
+  const {document:data_id, error:errorData} = useFetchDocuments("new-post", null, null, id)
  
-  console.log(data)
-  const onSubmit = (data)=> {
-    if (id) {
-      deleteDocument(id)
-    }
 
+  const onSubmit = (data)=> {
     setError(null)
 
     //is URL ?
@@ -43,6 +39,10 @@ const NewPost = () => {
     
     //send data to FirebaseDB
     setPostDB(data)
+ 
+    if (id) {
+      deleteDocument(id)
+    }
     //return to home page
     navigate("/")
   }
@@ -58,32 +58,32 @@ const NewPost = () => {
         <h2>Compartilhe momentos!</h2>
         <div className="fields" >
           <figure className="fields">
-            <img src={img || data && data.img} width="200" alt="" />
+            <img src={img || data_id && data_id.img} width="200" alt="" />
           </figure>
           <label>
             url da imagem
-            <input type="text" value={data && data.img} required {...register("img")} placeholder="ex: https://www.imagem-exaple.com"  onChange={e => setImg(e.target.value)}/>
+            <input type="text" value={data_id && data_id.img} required {...register("img")} placeholder="ex: https://www.imagem-exaple.com"  onChange={e => setImg(e.target.value)}/>
           </label>
           
         </div>
         <div className="fields">
           <label>
             Legenda
-            <input value={data && data.legend} type="text" required maxLength={150} {...register("legend")} />
+            <input value={data_id && data_id.legend} type="text" required maxLength={150} {...register("legend")} />
           </label>
         </div>
         <div className="fields">
           <label>
             Tags separadas por vírgula
-            <input value={data && data.tags.map(e => e)} type="text" maxLength={50} placeholder="ex: react, firebase" {...register("tags")} />
+            <input value={data_id && data_id.tags && data_id.tags.map(e => e)} type="text" maxLength={50} placeholder="ex: react, firebase" {...register("tags")} />
           </label>          
         </div>
         <div className="fields">
-          <input type="submit" value={!id ? "publicar" : "editar"} />
+          <input type="submit" value={id && !id ? "publicar" : "editar"} />
         </div>
 
         {
-          errorDB || error && (
+          errorDB || error || errorData && (
             <div className="error-message">{errorDB}</div>
           )
         }
