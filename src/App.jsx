@@ -72,15 +72,15 @@ function App() {
                 <Route path="/dashboard" element={user ? (<DashBoard/>) : (<Navigate to="/login"/>)}/>
                 <Route path="/about" element={<About/>} />
                 <Route path="/post/:id" element={<Post/>}/>
-                <Route path="/search" element={<Search/>}/>
-                
+                <Route path="/search" element={<Search/>}/>               
               </Routes>
             </article>
             <Routes>
-              <Route path="*" element={<NotFound/>}/>
-              <Route path="/create/post" element={user ? (<NewPost/>) : (<Navigate to="/login"/>)}/>               
+              <Route path="*" element={<NotFound/>}/>             
               <Route path="/login" element={!user ? (<Login/>) : (<Navigate to="/"/>)}/>
-              <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>               
+              <Route path="/registration" element={!user ? (<Registration/>) : (<Navigate to="/"/>)}/>       
+              <Route path="/create/post" element={user ? (<NewPost/>) : (<Navigate to="/login"/>)}/>
+              <Route path='/edit/post/:id' element={<NewPost/>}/>        
             </Routes>
             
           </main>

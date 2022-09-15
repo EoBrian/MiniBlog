@@ -1,6 +1,6 @@
 //hoocks
 import { useEffect, useState } from "react"
-import {useParams} from "react-router-dom"
+import {Navigate, useNavigate, useParams} from "react-router-dom"
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { useDataBase } from "../../hooks/useDataBase"
 import { useAuthContext } from "../../context/AuthContext"
@@ -13,14 +13,13 @@ import editPost from "../../assets/pencil-outline.svg"
 import deletePost from "../../assets/trash-outline.svg"
 
 
-
-
 const Post = () => {
   const {user} = useAuthContext()
   const {id} = useParams()
   const {document:post, isLoading, error} = useFetchDocuments("new-post", null, null, id)
   const {deleteDocument, isLoading:loadingDB, errorDB} = useDataBase("new-post")
   const [isUser, setIsUser] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(()=> {
     if (post && post.uid == user.uid) {
@@ -33,7 +32,7 @@ const Post = () => {
   
   return (
     <>
-      <Loading error={error} loading={isLoading}/>
+      <Loading error={error || errorDB} loading={isLoading || loadingDB}/>
 
       {isUser && (
         <div className="edit-post">
@@ -42,7 +41,7 @@ const Post = () => {
           </button>
 
           <button className="btn">
-            <img width={15} src={editPost} alt="edit-post icon" />
+            <img width={15} src={editPost} alt="edit-post icon" onClick={()=>navigate(`/edit/post/${post.id}`)} />
           </button>
         </div>
       )}      
