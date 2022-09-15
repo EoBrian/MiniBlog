@@ -14,6 +14,7 @@ export const useLogin = () => {
 
 
   const Login = async (email, password)=> {
+    setLoginError(null)
     checkIfIsCancelled()
     setLoading(true)
 
@@ -27,7 +28,12 @@ export const useLogin = () => {
   
     } catch (error) {
 
-      setLoginError(error.message)
+      if (error.message.includes("auth/user-not-found" || "auth/wrong-password")) {
+        setLoginError("email/senha incorretos!")
+      }else {
+        setLoginError("ocorreu um erro! tente novamente mais tarde!")
+      }
+      
 
     } finally {
 

@@ -31,9 +31,7 @@ export const useDataBase = (docName) => {
     try {
 
       await addDoc(collection(db, docName), {
-        img: post.img,
-        tags: post.tags,
-        legend: post.legend,
+        ...post,
         uid: user.uid,
         createdBy: user.displayName,
         createdAt: Timestamp.now(),
@@ -41,7 +39,7 @@ export const useDataBase = (docName) => {
 
       
     } catch (error) {
-      setErrorDB(error.message);
+      setErrorDB("erro ao fazer publicação, tente novamente mais tarde!");
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +55,7 @@ export const useDataBase = (docName) => {
       await deleteDoc(doc(collection(db, docName), id_post))
       navigate("/dashboard")
     } catch (error) {
-      setErrorDB(error.message)
+      setErrorDB("não foi possivel deletar essa publicação no momento!")
     } finally {
       setIsLoading(false)
     }

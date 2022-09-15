@@ -1,7 +1,7 @@
 import "./MenuApplication.css"
 
 //react
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 //custom hoocks
 import { useAuthentication } from "../../hooks/useAuthentication"

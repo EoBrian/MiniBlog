@@ -61,11 +61,14 @@ export const useAuthentication = () => {
       return user
 
     } catch (error) {
-
-      setError(error.message)
+  
+      if (error.message.includes("email-already-in-use")) {
+        setError("Email já cadastrado!")
+      } else {
+        setError("ocorreu um erro, tente novamente mais tarde!")
+      }
 
     } finally {
-
       setLoading(false) //stop loading
 
       useEffect(()=> {
